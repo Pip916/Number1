@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="content.css">
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;">
+</canvas>
+<h1>Content written as an JSON array in hikedataArray.json converted into a JavaScript array.</h1>
+
+<p id="hikedata"></p>
+
+<script>
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        for (x in myArr) {
+    document.getElementById("hikedata").innerHTML += myArr[x]+"<br>";
+}
+    }
+};
+xmlhttp.open("GET", "hikedataArray.json", true);
+xmlhttp.send();
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+ctx.moveTo(0, 0);
+ctx.lineTo(10,10 );
+ctx.stroke();
+</script>
+
+</body>
+    
+</html>
